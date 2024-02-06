@@ -2,13 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\02-overview",
+    "\\03-basics",
     "\\03-basics\\aws-backend",
     "\\03-basics\\terraform-cloud-backend",
     "\\03-basics\\web-app",
-    "\\04-variables-and-outputs\\examples",
-    "\\04-variables-and-outputs\\web-app",
     "\\06-organization-and-modules"
   ],
-  "SelectedNode": "\\02-overview\\main.tf",
+  "SelectedNode": "\\03-basics\\aws-backend\\main.tf",
   "PreviewInSolutionExplorer": false
 }

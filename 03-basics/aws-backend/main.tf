@@ -4,6 +4,7 @@ terraform {
   ## YOU WILL UNCOMMENT THIS CODE THEN RERUN TERRAFORM INIT
   ## TO SWITCH FROM LOCAL BACKEND TO REMOTE AWS BACKEND
   #############################################################
+  #
   # backend "s3" {
   #   bucket         = "devops-directive-tf-state" # REPLACE WITH YOUR BUCKET NAME
   #   key            = "03-basics/import-bootstrap/terraform.tfstate"
