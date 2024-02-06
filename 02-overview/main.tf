@@ -1,4 +1,14 @@
 terraform {
+  cloud {
+    organization = "Anchornet"
+
+    workspaces {
+      name = "devops-directive-terraform-course"
+    }
+  }
+}
+
+terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -8,10 +18,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-2"
+  access_key = "AKIA2CYLMNVBQMI6YGP4"
+  secret_key = "FrrlLcAUHTJxhag2KFhwnPPmCX8WCByl5A+DMFUc"
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+resource "aws_instance" "anchornet-vm" {
+  ami           = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2
   instance_type = "t2.micro"
 }

@@ -1,5 +1,5 @@
 bucket_prefix = "devops-directive-web-app-data"
 domain        = "devopsdeployed.com"
-db_name       = "mydb"
-db_user       = "foo"
+db_name       = "anchornetdb"
+db_user       = "anchornetuser"
 # db_pass = "foobarbaz"

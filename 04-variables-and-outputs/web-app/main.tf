@@ -1,12 +1,10 @@
 terraform {
-  # Assumes s3 bucket and dynamo DB table already set up
-  # See /code/03-basics/aws-backend
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "04-variables-and-outputs/web-app/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+  cloud {
+    organization = "Anchornet"
+
+    workspaces {
+      name = "devops-directive-terraform-course"
+    }
   }
 
   required_providers {
@@ -17,9 +15,10 @@ terraform {
   }
 }
 
-
 provider "aws" {
   region = var.region
+  access_key = var.aws_key
+  secret_key = var.aws_secret
 }
 
 resource "aws_instance" "instance_1" {
@@ -28,7 +27,7 @@ resource "aws_instance" "instance_1" {
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
               #!/bin/bash
-              echo "Hello, World 1" > index.html
+              echo "Hello, Anchornet 1" > index.html
               python3 -m http.server 8080 &
               EOF
 }
@@ -39,7 +38,7 @@ resource "aws_instance" "instance_2" {
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
               #!/bin/bash
-              echo "Hello, World 2" > index.html
+              echo "Hello, Anchornet 2" > index.html
               python3 -m http.server 8080 &
               EOF
 }

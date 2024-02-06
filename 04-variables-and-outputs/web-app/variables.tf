@@ -3,7 +3,7 @@
 variable "region" {
   description = "Default region for provider"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-southeast-2"
 }
 
 # EC2 Variables
@@ -11,7 +11,7 @@ variable "region" {
 variable "ami" {
   description = "Amazon machine image to use for ec2 instance"
   type        = string
-  default     = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  default     = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2
 }
 
 variable "instance_type" {
@@ -52,4 +52,17 @@ variable "db_pass" {
   sensitive   = true
 }
 
+# AWS Variables
+
+variable "aws_key" {
+  description = "AWS Access Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "aws_secret" {
+  description = "AWS Access Key"
+  type        = string
+  sensitive   = true
+}
 

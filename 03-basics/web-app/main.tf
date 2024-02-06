@@ -1,12 +1,21 @@
 terraform {
   # Assumes s3 bucket and dynamo DB table already set up
   # See /code/03-basics/aws-backend
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "03-basics/web-app/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+
+  #backend "s3" {
+  #  bucket         = "devops-directive-tf-state"
+  #  key            = "03-basics/web-app/terraform.tfstate"
+  #  region         = "us-east-1"
+  #  dynamodb_table = "terraform-state-locking"
+  #  encrypt        = true
+  #}
+
+  cloud {
+    organization = "Anchornet"
+
+    workspaces {
+      name = "devops-directive-terraform-course"
+    }
   }
 
   required_providers {
@@ -18,27 +27,29 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-2"
+  access_key = var.aws_key
+  secret_key = var.aws_secret
 }
 
-resource "aws_instance" "instance_1" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+resource "aws_instance" "Anchornet-vm-1" {
+  ami             = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
               #!/bin/bash
-              echo "Hello, World 1" > index.html
+              echo "Hello Cob, you need to eat more fibre!" > index.html
               python3 -m http.server 8080 &
               EOF
 }
 
-resource "aws_instance" "instance_2" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+resource "aws_instance" "Anchornet-vm-2" {
+  ami             = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
               #!/bin/bash
-              echo "Hello, World 2" > index.html
+              echo "Hello Cob, you need to eat more fibre!" > index.html
               python3 -m http.server 8080 &
               EOF
 }
@@ -122,15 +133,15 @@ resource "aws_lb_target_group" "instances" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "instance_1" {
+resource "aws_lb_target_group_attachment" "Anchornet-vm-1" {
   target_group_arn = aws_lb_target_group.instances.arn
-  target_id        = aws_instance.instance_1.id
+  target_id        = aws_instance.Anchornet-vm-1.id
   port             = 8080
 }
 
-resource "aws_lb_target_group_attachment" "instance_2" {
+resource "aws_lb_target_group_attachment" "Anchornet-vm-2" {
   target_group_arn = aws_lb_target_group.instances.arn
-  target_id        = aws_instance.instance_2.id
+  target_id        = aws_instance.Anchornet-vm-2.id
   port             = 8080
 }
 
