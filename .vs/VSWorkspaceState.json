@@ -1,11 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\02-overview",
+    "\\03-basics",
+    "\\03-basics\\web-app",
     "\\04-variables-and-outputs",
     "\\04-variables-and-outputs\\examples",
     "\\04-variables-and-outputs\\web-app",
     "\\05-language-features",
     "\\06-organization-and-modules"
   ],
+  "SelectedNode": "\\02-overview\\main.tf",
   "PreviewInSolutionExplorer": false
 }

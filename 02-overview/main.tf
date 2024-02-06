@@ -19,8 +19,6 @@ terraform {
 
 provider "aws" {
   region = "ap-southeast-2"
-  access_key = "AKIA2CYLMNVBQMI6YGP4"
-  secret_key = "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"
 }
 
 resource "aws_instance" "anchornet-vm" {
