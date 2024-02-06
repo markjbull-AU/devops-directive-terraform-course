@@ -23,6 +23,6 @@ provider "aws" {
 }
 
 resource "aws_instance" "anchornet-vm" {
-  ami           = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2
+  ami           = "ami-04f5097681773b989" # Ubuntu 22.04 LTS // ap-southeast-2.
   instance_type = "t2.micro"
 }
